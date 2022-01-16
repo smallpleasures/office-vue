@@ -14,6 +14,8 @@ export const initMenu = (router, store) => {
         if (data) {
             // 格式化好路由
             let fmtRoutes = formatRoutes(data)
+            console.log(fmtRoutes)
+            
             // 添加到 router
             router.addRoutes(fmtRoutes)
             // 将数据存入 Vuex
