@@ -19,6 +19,7 @@
           stripe
           border
           size="small"
+          max-height="450"
           style="width: 70%;"
           @selection-change="handleSelectionChange">
       <el-table-column

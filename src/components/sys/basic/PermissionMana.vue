@@ -34,7 +34,7 @@
 </template>
 <script>
 export default {
-  name: "PositionMana",
+  name: "PermissionMana",
   data() {
     return {
       role: {
