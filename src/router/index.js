@@ -13,34 +13,48 @@ const routes = [
         path: '/',
         name: 'Login',
         component: Login,
-        //hidden: true
+        hidden: true
     },
-    {
+    /*{
         path: '/home',
         name: 'Home',
         component: Home
-    }
+    }*/
 ]
+
 
 const router = new VueRouter({
     routes
 })
 
+/*const originalPush = VueRouter.prototype.push
+const originalReplace = VueRouter.prototype.replace*/
+// push
+/*VueRouter.prototype.push = function push (location, onResolve, onReject) {
+    if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+    return originalPush.call(this, location).catch(err => err)
+}*/
+// replace
+/*VueRouter.prototype.replace = function push (location, onResolve, onReject) {
+    if (onResolve || onReject) return originalReplace.call(this, location, onResolve, onReject)
+    return originalReplace.call(this, location).catch(err => err)
+}*/
+
 // 全局前置守卫
 router.beforeEach((to, from, next) => {
-    if (window.sessionStorage.getItem('tokenStr')) {
+    if (sessionStorage.getItem('tokenStr')) {
         initMenu(router, store)
-        console.log(router)
+        //console.log(router)
         // 如果用户不存在
-        if (!window.sessionStorage.getItem('user')) {
+        if (!sessionStorage.getItem('user')) {
             // 判断用户信息是否存在
             return getRequest('/admin/info').then(resp => {
                 if (resp.object) {
                     // 存入用户信息，转字符串，存入 sessionStorage
-                    window.sessionStorage.setItem('user', JSON.stringify(resp.object))
+                    sessionStorage.setItem('user', JSON.stringify(resp.object))
                     // 同步用户信息 编辑用户
                     //store.commit('INIT_ADMIN',resp)
-                    next();
+                    next({...to,replace:true})
                 }
             })
         }
@@ -53,4 +67,5 @@ router.beforeEach((to, from, next) => {
         }
     }
 })
+
 export default router

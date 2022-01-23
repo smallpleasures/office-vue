@@ -19,6 +19,7 @@ axios.interceptors.response.use(success => {
             return
         }
         if (success.data.message) {
+            if (success.data.message!='获取成功')
             Message.success({message: success.data.message})
         }
     }

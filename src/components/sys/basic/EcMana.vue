@@ -1,12 +1,15 @@
 <template>
   <div>
-    工资账套管理
+    奖惩规则
   </div>
 </template>
-
 <script>
 export default {
-  name: "SalSob"
+  name: "EcMana",
+  data() {
+    return {}
+  },
+  methods: {}
 }
 </script>
 

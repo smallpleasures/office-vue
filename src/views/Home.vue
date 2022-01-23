@@ -22,7 +22,7 @@
                   background-color="#545c64"
                   text-color="#fff"
                   active-text-color="#ffd04b">
-                <el-submenu :index="index + ''" v-for="(item,index) in routes" :key="index">
+                <el-submenu :index="index + ''" v-for="(item,index) in routes" :key="index" v-if="!item.hidden">
                   <template slot="title">
                     <i :class="item.iconCls" style="margin-right: 5px; color: azure"></i>
                     <span>{{item.name}}</span>
@@ -33,7 +33,14 @@
               </el-menu>
     </el-aside>
     <el-main>
-      <router-view />
+      <el-breadcrumb separator-class="el-icon-arrow-right" v-if="$router.currentRoute.path!='/home'">
+        <el-breadcrumb-item :to="{path: '/home'}">首页</el-breadcrumb-item>
+        <el-breadcrumb-item>{{$router.currentRoute.name}}</el-breadcrumb-item>
+      </el-breadcrumb>
+      <div class="homeWelcome" v-if="$router.currentRoute.path=='/home'">
+        欢迎来到在线办公系统！
+      </div>
+      <router-view class="content" />
     </el-main>
   </el-container>
 
@@ -104,6 +111,18 @@ export default {
     height: 48px;
     border-radius: 50%;
     margin-right: 8px;
+  }
+
+  .homeWelcome {
+    text-align: center;
+    font-size: 30px;
+    font-family: 华文楷体;
+    color: #409ef4;
+    padding-top: 50px;
+  }
+
+  .content {
+    margin-top: 10px;
   }
 
 </style>

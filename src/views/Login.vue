@@ -19,6 +19,9 @@
 </template>
 
 <script>
+import VueRouter from 'vue-router'
+const { isNavigationFailure, NavigationFailureType } = VueRouter
+
 export default {
   name: "Login",
   data() {
@@ -49,10 +52,19 @@ export default {
             this.loading = false
             if (resp) {
               // 存储用户token到sessionStorage
-              console.log(resp.object)
+              //console.log(resp.object)
               const tokenStr = resp.object.tokenHead + ' ' + resp.object.token
               sessionStorage.setItem('tokenStr', tokenStr)
-              this.$router.replace('/home')
+              let path = this.$route.query.redirect
+              this.$router.replace((path=='/'||path==undefined)?'/home':path).catch(failure => {
+                console.log(failure)
+                if (isNavigationFailure(failure, NavigationFailureType.duplicated)) {
+                  console.log(NavigationFailureType)
+                  alert(NavigationFailureType)
+                  alert(1)
+                }
+
+              })
             }
           })
         } else {

@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "SysBasic"
+  name: "SysCfg"
 }
 </script>
 
