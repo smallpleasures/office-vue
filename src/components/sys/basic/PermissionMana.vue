@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="positionManaTool">
+    <div class="permissionManaTool">
       <el-input v-model="role.name" placeholder="请输入角色英文名" size="small">
         <template slot="prepend">ROLE_</template>
       </el-input>
@@ -8,7 +8,7 @@
       <el-button type="primary" icon="el-icon-plus" size="mini" @click="doAddRole">添加角色</el-button>
     </div>
     <!-- 手风琴 -->
-    <div class="positionManaMain">
+    <div class="permissionManaMain">
       <el-collapse v-model="activeName" accordion @change="change">
         <el-collapse-item :title="r.nameZh" :name="r.id" v-for="(r,index) in roles" :key="index">
           <el-card class="box-card">
@@ -148,17 +148,17 @@ export default {
 </script>
 
 <style scoped>
-.positionManaTool {
+.permissionManaTool {
   display: flex;
   justify-content: flex-start;
 }
 
-.positionManaTool .el-input {
+.permissionManaTool .el-input {
   width: 300px;
   margin-right: 6px;
 }
 
-.positionManaMain {
+.permissionManaMain {
   margin-top: 10px;
   width: 700px;
 }
