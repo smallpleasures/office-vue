@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="container">
     <el-header class="homeHeader" height="60px">
       <div class="title">
         在线办公系统
@@ -16,7 +16,7 @@
       </el-dropdown>
     </el-header>
 
-    <el-container>
+    <el-container >
     <el-aside class="el-aside" width="200px" style="background-color: #545c64;">
               <el-menu router :unique-opened="true"
                   background-color="#545c64"
@@ -86,6 +86,11 @@ export default {
 </script>
 
 <style scoped>
+
+  .container {
+    height: 100%;
+  }
+
   .homeHeader {
     background: #4787f0;
     display: flex;
@@ -103,7 +108,8 @@ export default {
     cursor: pointer;
   }
   .el-aside {
-    height: calc(100vh - 60px);
+    /*height: calc(100vh - 60px);*/
+    height: 100vh;
   }
 
   .el-dropdown-link img {
