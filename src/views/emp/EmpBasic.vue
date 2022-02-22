@@ -166,7 +166,6 @@
     <div style="margin-top: 10px;">
       <!-- 2、表格；6、添加 loading -->
       <el-table
-          max-height="500"
           :data="emps"
           v-loading="loading"
           element-loading-text="拼命加载中"

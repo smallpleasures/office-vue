@@ -17,8 +17,8 @@
     </el-header>
 
     <el-container >
-    <el-aside class="el-aside" width="200px" style="background-color: #545c64;">
-              <el-menu router :unique-opened="true"
+    <el-aside  width="200px" style="background-color: #545c64;">
+              <el-menu router :unique-opened="true" style="height: calc(100vh - 60px); border-right-width: 0"
                   background-color="#545c64"
                   text-color="#fff"
                   active-text-color="#ffd04b">
@@ -52,13 +52,19 @@ export default {
   name: "Home",
   data() {
     return {
-      user: JSON.parse(sessionStorage.getItem('user'))
+      user: JSON.parse(sessionStorage.getItem('user')),
+      aside: {
+        height: ''
+      }
     }
   },
   computed: {
     routes() {
       return this.$store.state.routes
     }
+  },
+  created() {
+    this.aside.height = document.body.scrollHeight - 20 + 'px';
   },
   methods: {
     commandHandler(command) {
@@ -87,9 +93,10 @@ export default {
 
 <style scoped>
 
-  .container {
+  /*.container {
     height: 100%;
-  }
+    overflow: hidden;
+  }*/
 
   .homeHeader {
     background: #4787f0;
@@ -107,11 +114,11 @@ export default {
   .homeHeader .userInfo {
     cursor: pointer;
   }
-  .el-aside {
-    /*height: calc(100vh - 60px);*/
-    height: 100vh;
-  }
+  /*.el-aside {
 
+    !*height: calc(100vh - 60px);*!
+    height: 100vh;
+  }*/
   .el-dropdown-link img {
     width: 48px;
     height: 48px;
