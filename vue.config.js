@@ -10,6 +10,10 @@ module.exports = {
                 pathRewrite: {
                     '^/': '/'
                 }
+            },
+            '/ws': {
+                ws: true,
+                target: 'ws://localhost:8081'
             }
         }
     }

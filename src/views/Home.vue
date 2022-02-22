@@ -4,16 +4,20 @@
       <div class="title">
         在线办公系统
       </div>
-      <el-dropdown class="userInfo" @command="commandHandler">
+      <div>
+        <el-button type="text" icon="el-icon-bell" size="normal"
+                   style="margin-right: 8px;color: black;" @click="goChat"></el-button>
+        <el-dropdown class="userInfo" @command="commandHandler">
         <span class="el-dropdown-link">
           {{user.name}}<i><img :src="user.userFace"></i>
         </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="userinfo">个人中心</el-dropdown-item>
-          <el-dropdown-item command="setting">设置</el-dropdown-item>
-          <el-dropdown-item command="logout">注销登录</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="userinfo">个人中心</el-dropdown-item>
+            <el-dropdown-item command="setting">设置</el-dropdown-item>
+            <el-dropdown-item command="logout">注销登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </el-header>
 
     <el-container >
@@ -67,6 +71,10 @@ export default {
     this.aside.height = document.body.scrollHeight - 20 + 'px';
   },
   methods: {
+    // 进入聊天页面
+    goChat() {
+      this.$router.push('/chat')
+    },
     commandHandler(command) {
       if (command === 'logout') {
         this.$confirm('此操作将注销登录，是否继续？', '提示', {
