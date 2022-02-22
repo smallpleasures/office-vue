@@ -4,7 +4,7 @@
       <el-input
           size="small"
           class="addPosInput"
-          placeholder="请选择日期"
+          placeholder="请输入职位"
           suffix-icon="el-icon-plus"
           @keydown.enter.native="addPosition"
           v-model="pos.name">
@@ -132,8 +132,8 @@ export default {
     },
     // 编辑职位对话框
     showEditView(index, data) {
-      //Object.assign(this.updatePos, data) // 回显数据,数据拷贝
-      this.updatePos = data // 回显数据 有bug
+      Object.assign(this.updatePos, data) // 回显数据,数据拷贝
+      // this.updatePos = data // 回显数据 有bug
       this.updatePos.createDate = ''
       this.dialogVisible = true // 显示编辑框
     },
