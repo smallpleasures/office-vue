@@ -94,7 +94,11 @@ export default {
           })
         })
       }
+      if (command === 'userinfo') {
+        this.$router.push('/userinfo')
+      }
     }
+
   }
 }
 </script>

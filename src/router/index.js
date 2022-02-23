@@ -6,6 +6,7 @@ import {initMenu} from '@/utils/menus'
 import {getRequest} from "@/utils/api";
 import store from '@/store'
 import FriendChat from "../views/chat/FriendChat";
+import AdminInfo from "../views/AdminInfo";
 
 Vue.use(VueRouter)
 
@@ -26,11 +27,11 @@ const routes = [
                 name: '在线聊天',
                 component: FriendChat
             },
-            /*{
+            {
                 path: '/userinfo',
                 name: '个人中心',
                 component: AdminInfo
-            }*/
+            }
         ]
     }
 ]

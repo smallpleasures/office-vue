@@ -172,7 +172,7 @@ export default {
         }
       });
     },
-    // 2-7 重围修改密码表单
+    // 2-7 重置修改密码表单
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
@@ -196,7 +196,8 @@ export default {
     initAdmin() {
       this.getRequest('/admin/info').then(resp => {
         if (resp) {
-          this.admin = resp
+          this.admin = resp.object
+          console.log('aaa', resp)
           this.admin2 = Object.assign({}, this.admin) // 1-6 对象拷贝给 admin2
           window.sessionStorage.setItem('user', JSON.stringify(resp))
           this.$store.commit('INIT_ADMIN', resp)
