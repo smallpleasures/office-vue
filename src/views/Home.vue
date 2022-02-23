@@ -28,7 +28,7 @@
                   active-text-color="#ffd04b">
                 <el-submenu :index="index + ''" v-for="(item,index) in routes" :key="index" v-if="!item.hidden">
                   <template slot="title">
-                    <i :class="item.iconCls" style="margin-right: 5px; color: azure"></i>
+                    <i :class="item.iconCls" style="margin-right: 5px; color: #379ff5"></i>
                     <span>{{item.name}}</span>
                   </template>
                   <el-menu-item :index="children.path" v-for="(children,index) in
