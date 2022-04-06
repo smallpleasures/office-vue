@@ -19,8 +19,7 @@
 </template>
 
 <script>
-import VueRouter from 'vue-router'
-const { isNavigationFailure, NavigationFailureType } = VueRouter
+import store from "../store";
 
 export default {
   name: "Login",
@@ -55,15 +54,15 @@ export default {
               //console.log(resp.object)
               const tokenStr = resp.object.tokenHead + ' ' + resp.object.token
               sessionStorage.setItem('tokenStr', tokenStr)
-              let path = this.$route.query.redirect
-              this.$router.replace((path=='/'||path==undefined)?'/home':path).catch(failure => {
-                console.log(failure)
-                if (isNavigationFailure(failure, NavigationFailureType.duplicated)) {
-                  console.log(NavigationFailureType)
-                  alert(NavigationFailureType)
-                  alert(1)
+              this.getRequest('/admin/info').then(resp => {
+                if (resp.object) {
+                  // 存入用户信息，转字符串，存入 sessionStorage
+                  sessionStorage.setItem('user', JSON.stringify(resp.object))
+                  // 同步用户信息 编辑用户
+                  store.commit('INIT_ADMIN', resp)
+                  let path = this.$route.query.redirect
+                  this.$router.replace((path == '/' || path == undefined) ? '/home' : path)
                 }
-
               })
             }
           })
