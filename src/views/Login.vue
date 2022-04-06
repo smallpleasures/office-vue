@@ -7,10 +7,10 @@
              element-loading-background="rgba(0, 0, 0, 0.8)">
       <h3 class="loginTitle">系统登录</h3>
       <el-form-item prop="username">
-        <el-input type="text" auto-complete="false" v-model="loginForm.username" placeholder="请输入用户名"></el-input>
+        <el-input type="text" auto-complete="false" v-model="loginForm.username" placeholder="请输入用户名" @keyup.native.enter="submitLogin"></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input type="password" v-model="loginForm.password" placeholder="请输入密码"></el-input>
+        <el-input type="password" v-model="loginForm.password" placeholder="请输入密码" @keyup.native.enter="submitLogin"></el-input>
       </el-form-item>
         <el-checkbox class="remember" v-model="checked">记住我</el-checkbox>
         <el-button type="primary" style="width: 100%" @click="submitLogin">登录</el-button>
@@ -61,7 +61,8 @@ export default {
                   // 同步用户信息 编辑用户
                   store.commit('INIT_ADMIN', resp.object)
                   let path = this.$route.query.redirect
-                  this.$router.replace((path == '/' || path == undefined) ? '/home' : path)
+                  // this.$router.replace((path == '/' || path == undefined) ? '/home' : path)
+                  this.$router.push("/chat")
                 }
               })
             }
