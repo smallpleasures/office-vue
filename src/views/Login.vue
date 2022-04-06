@@ -59,7 +59,7 @@ export default {
                   // 存入用户信息，转字符串，存入 sessionStorage
                   sessionStorage.setItem('user', JSON.stringify(resp.object))
                   // 同步用户信息 编辑用户
-                  store.commit('INIT_ADMIN', resp)
+                  store.commit('INIT_ADMIN', resp.object)
                   let path = this.$route.query.redirect
                   this.$router.replace((path == '/' || path == undefined) ? '/home' : path)
                 }
