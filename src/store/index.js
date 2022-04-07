@@ -21,7 +21,8 @@ const store = new Vuex.Store({
         // currentSession: -1,
         filterKey: '',
         stomp: null, // 2-2 在线聊天-定义对象
-        idDot: {} // 未读消息 对象
+        idDot: {}, // 未读消息 对象
+        msg: '' // 一条消息
     },
     mutations: { // 与 state 同步执行；可以改变 state 对应的值的方法
         // 编辑用户 同步用户信息
@@ -73,7 +74,13 @@ const store = new Vuex.Store({
             context.state.stomp.connect({'Auth-Token': token}, success => { // 把 token 放进去
                 context.state.stomp.subscribe('/user/queue/chat', msg => { // 订阅消息频道
                     // console.log(msg.body)
+                    // 避免消息重复消费
                     let receiveMsg = JSON.parse(msg.body)
+                    if (JSON.stringify(context.state.msg) === JSON.stringify(receiveMsg)) {
+                        return
+                    } else {
+                        context.state.msg = receiveMsg
+                    }
                     // 有消息发来，右下角 弹框提示
                     if (!context.state.currentSession || receiveMsg.from !== context.state.currentSession.username) {
                         Notification.info({
