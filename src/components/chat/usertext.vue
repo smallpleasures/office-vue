@@ -1,6 +1,6 @@
 <template>
   <div id="uesrtext">
-    <textarea placeholder="按 Ctrl + Enter 发送" v-model="content" v-on:keyup="addMessage"></textarea>
+    <textarea placeholder="按 Ctrl + Enter 发送" v-model="content" @keydown.ctrl.enter="addMessage"></textarea>
   </div>
 </template>
 
@@ -18,8 +18,8 @@ export default {
     'currentSession'
   ]),
   methods: {
-    addMessage(e) {
-      if (e.ctrlKey && e.keyCode === 13 && this.content.length) {
+    addMessage() {
+      if (this.content.length) {
         // 自定义发送消息
         let msgObj = {}
         // let msgObj = new Object()

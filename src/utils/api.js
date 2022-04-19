@@ -30,6 +30,9 @@ axios.interceptors.response.use(success => {
 
 // 预备前置路径
 let base = '';
+/*if (process.env.NODE_ENV === 'production') {
+    base = process.env.VUE_APP_API_URL
+}*/
 
 // 传送 json 格式的 post 请求
 export const postRequest = (url, params) => {
